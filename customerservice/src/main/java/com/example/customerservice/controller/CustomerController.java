@@ -38,18 +38,21 @@ public class CustomerController {
 	}
 
 	@DeleteMapping("/{customerId}")
+	@CacheEvict(value = "customer", key = "#customerId")
 	public String deleteCustomer(@PathVariable int customerId) {
 		customerService.deleteCustomer(customerId);
 		return "xoá thành công id" + customerId;
 	}
 
 	@PostMapping("/update")
+	@CachePut(value = "users", key = "#customer.customerId")
 	public Customer updateCustomer(@RequestBody Customer customer) {
 		Customer customer2 = customerService.updateCustomer(customer);
 		return customer2;
 	}
 
 	@GetMapping("/{customerId}")
+//	@Cacheable(value = "customer", key = "#customerId")
 	public Customer getCustomerById(@PathVariable int customerId) {
 		Customer Customer = customerService.getCustomerById(customerId);
 		return Customer;

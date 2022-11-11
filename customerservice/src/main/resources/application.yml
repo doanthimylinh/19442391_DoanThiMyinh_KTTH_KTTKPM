@@ -1,0 +1,25 @@
+server:
+  port:8083
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customerservice
+    password: 1122288
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  redis:
+    host: localhost
+    port: 6379
+  cache:
+    cache-names:
+    - Customer
+    redis:
+      key-prefix: test
+      time-to-live: 60000
+      cache-null-values: true
+debug: true
+
